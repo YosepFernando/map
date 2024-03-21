@@ -20,6 +20,7 @@
   border-bottom: 2px solid rgb(232, 223, 223);
   width: 95%;
   margin: auto;
+  justify-content: center;
 }
 
 .nav-item {
@@ -72,6 +73,12 @@
   text-align: center;
   margin: 0;
   filter: drop-shadow(0px 0px 10px cyan);
+}
+
+.container-nav {
+  justify-content: space-between;
+  display: flex;
+  width: 95%;
 }
 
 #mapid {
