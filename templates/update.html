@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Markers</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .backg-log {
+        background-image: url(../static/Background.jpg);
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        animation: zoomback 5s ease-out forwards;
+        filter: blur(2px) brightness(0.6);
+      }
+      @keyframes zoomback {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.15);
+        }
+      }
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background: rgb(255, 255, 255);
+        max-height: 50vh;
+        padding: 30px;
+        width: 500px;
+        opacity: 0.6;
+        box-shadow: 0px 0px 10px white;
+        border-radius: 15px;
+        animation: fadeinup 0.5s;
+        overflow: hidden;
+      }
+      @keyframes fadeinup {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px) scale(0.9);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+      }
+      .inputs {
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+      }
+      .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        text-align: right;
+        margin-bottom: 15px;
+        margin-top: 0.5rem;
+      }
+      .form-group label {
+        width: 100px;
+        margin-right: 8px;
+      }
+      .form-group input[type="text"] {
+        border: 1px solid gray;
+        outline: none;
+        box-shadow: 0px 0px 30px black;
+        padding: 10px;
+        border-radius: 25px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+      .buttt {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        height: 2.5rem;
+        width: 25%;
+        opacity: 1;
+        color: rgb(174, 166, 166);
+        border-radius: 25px;
+        background-color: #fcf5e5;
+        text-decoration: none;
+        border: 2px solid #0ef;
+        transition: colors 1s, box-shadow 1s;
+        z-index: 1;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .buttt:hover {
+        transition-delay: 0s;
+        color: #292525;
+        box-shadow: 0 0 20px cyan;
+      }
+      .message {
+        color: red;
+        text-align: center;
+        font-weight: 500;
+        height: 2rem;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="backg-log"></div>
+    <div class="box">
+      <div class="content">
+        <div class="login-data">
+          <div class="inputs">
+            <form
+              id="update-form"
+              class="login-group"
+              action="/update/{{.Nama}}"
+              method="post"
+            >
+              <div class="form-group">
+                <label for="username">Nama :</label>
+                <input
+                  type="text"
+                  id="nama"
+                  name="nama"
+                  value="{{.Nama}}"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="latitude">Latitude :</label>
+                <input
+                  type="text"
+                  id="latitude"
+                  name="latitude"
+                  value="{{.Latitude}}"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="longitude">Longitude :</label>
+                <input
+                  type="text"
+                  id="longitude"
+                  name="longitude"
+                  value="{{.Longitude}}"
+                  required
+                />
+              </div>
+              <div class="buttons">
+                <button class="buttt" type="submit" onclick="updateData()">
+                  Update
+                </button>
+                <a href="/" style="font-weight: 500">Back</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updateData() {
+        // Mendapatkan nilai input
+        var nama = document.getElementById("nama").value;
+        var latitude = document.getElementById("latitude").value;
+        var longitude = document.getElementById("longitude").value;
+
+        // Mengirim permintaan AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/update/{{.Nama}}", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Tindakan yang diambil setelah menerima respons
+            console.log(xhr.responseText);
+            // Misalnya, tampilkan pesan sukses
+            alert("Data berhasil diperbarui!");
+          }
+        };
+        var data = JSON.stringify({
+          nama: nama,
+          latitude: latitude,
+          longitude: longitude,
+        });
+        xhr.send(data);
+      }
+    </script>
+  </body>
+</html>

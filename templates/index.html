@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+  </head>
+  <body>
+    <div class="backg">
+      <nav class="navbar">
+        <div class="container-nav">
+          <div class="homeb" style="display: flex; align-items: center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              width="40"
+              height="40"
+              style="animation: fadeindown 0.5s"
+            >
+              <path
+                d="M51.7 295.1l31.7 6.3c7.9 1.6 16-.9 21.7-6.6l15.4-15.4c11.6-11.6 31.1-8.4 38.4 6.2l9.3 18.5c4.8 9.6 14.6 15.7 25.4 15.7c15.2 0 26.1-14.6 21.7-29.2l-6-19.9c-4.6-15.4 6.9-30.9 23-30.9h2.3c13.4 0 25.9-6.7 33.3-17.8l10.7-16.1c5.6-8.5 5.3-19.6-.8-27.7l-16.1-21.5c-10.3-13.7-3.3-33.5 13.4-37.7l17-4.3c7.5-1.9 13.6-7.2 16.5-14.4l16.4-40.9C303.4 52.1 280.2 48 256 48C141.1 48 48 141.1 48 256c0 13.4 1.3 26.5 3.7 39.1zm407.7 4.6c-3-.3-6-.1-9 .8l-15.8 4.4c-6.7 1.9-13.8-.9-17.5-6.7l-2-3.1c-6-9.4-16.4-15.1-27.6-15.1s-21.6 5.7-27.6 15.1l-6.1 9.5c-1.4 2.2-3.4 4.1-5.7 5.3L312 330.1c-18.1 10.1-25.5 32.4-17 51.3l5.5 12.4c8.6 19.2 30.7 28.5 50.5 21.1l2.6-1c10-3.7 21.3-2.2 29.9 4.1l1.5 1.1c37.2-29.5 64.1-71.4 74.4-119.5zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm144.5 92.1c-2.1 8.6 3.1 17.3 11.6 19.4l32 8c8.6 2.1 17.3-3.1 19.4-11.6s-3.1-17.3-11.6-19.4l-32-8c-8.6-2.1-17.3 3.1-19.4 11.6zm92-20c-2.1 8.6 3.1 17.3 11.6 19.4s17.3-3.1 19.4-11.6l8-32c2.1-8.6-3.1-17.3-11.6-19.4s-17.3 3.1-19.4 11.6l-8 32zM343.2 113.7c-7.9-4-17.5-.7-21.5 7.2l-16 32c-4 7.9-.7 17.5 7.2 21.5s17.5 .7 21.5-7.2l16-32c4-7.9 .7-17.5-7.2-21.5z"
+              />
+            </svg>
+            <ul class="nav-item">
+              <li class="item">
+                <button
+                  class="is-active"
+                  onclick="window.location.href='/'"
+                  style="
+                    animation: fadeindown 0.5s 0.2s forwards;
+                    cursor: pointer;
+                  "
+                >
+                  HOME
+                </button>
+              </li>
+            </ul>
+          </div>
+          <ul class="nav-item">
+            <li class="item">
+              <p
+                style="
+                  font-family: Montserrat, sans-serif;
+                  font-size: 28px;
+                  animation: fadeindown 0.5s 0.7s forwards;
+                  opacity: 0;
+                "
+              >
+                Hello <strong>{{.Username}}!</strong>
+              </p>
+            </li>
+            <li class="item">
+              <button
+                style="animation: fadeindown 0.5s 0.8s forwards"
+                onclick="window.location.href='/logout'"
+              >
+                <svg
+                  fill="#000000"
+                  height="30px"
+                  width="30px"
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 384.971 384.971"
+                  xml:space="preserve"
+                  style="margin-top: 8px; margin-left: 15px; cursor: pointer"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g>
+                      <g id="Sign_Out">
+                        <path
+                          d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03 C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03 C192.485,366.299,187.095,360.91,180.455,360.91z"
+                        ></path>
+                        <path
+                          d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="content">
+        <h1>Single Marker</h1>
+      </div>
+      <div class="con-butt" style="gap: 10px">
+        <button class="showrs" onclick="addHospitalMarkers()">
+          Show/Hide Markers
+        </button>
+        <button class="showrs" onclick="window.location.href='add'">
+          Add Marker
+        </button>
+      </div>
+
+      <div id="mapid"></div>
+
+      <div
+        class="tabledata"
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          margin: 0 auto;
+          filter: drop-shadow(0 0 10px cyan);
+        "
+      >
+        <h1 style="text-align: center">Data Markers</h1>
+        <table id="marker-table">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody style="text-align: center"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- script map -->
+    <script>
+      // Menampilkan peta
+      var mymap = L.map("mapid").setView([-8.7540327, 115.177919], 11);
+
+      // Menambahkan layer peta
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(mymap);
+
+      // Membuat icon dari gambar PNG
+      var myIcon = L.icon({
+        iconUrl: "../static/pin.png",
+        iconSize: [20, 25],
+        iconAnchor: [10, 35],
+      });
+
+      // Menambahkan marker
+      var marker = L.marker([-8.7540327, 115.177919], {
+        icon: myIcon,
+        draggable: true,
+      }).addTo(mymap);
+
+      // Membuat popup baru
+      var popup = L.popup({ offset: [0, -30] })
+        .setLatLng(marker.getLatLng())
+        .setContent("Ini adalah marker di Bali!");
+
+      // Binding popup ke marker
+      marker.bindPopup(popup);
+
+      // Format popup content
+      formatContent = function (lat, lng) {
+        return `
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="cell merged" style="text-align:center">Koordinat</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Latitude</div>
+                        <div class="col">${lat}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Longitude</div>
+                        <div class="col">${lng}</div>
+                    </div>
+                </div>
+            `;
+      };
+
+      // Menambahkan event listener pada marker
+      marker.on("click", function () {
+        popup.setLatLng(marker.getLatLng()),
+          popup.setContent(
+            formatContent(marker.getLatLng().lat, marker.getLatLng().lng)
+          );
+      });
+
+      // Menambahkan event listener pada marker
+      marker.on("drag", function (event) {
+        popup.setLatLng(marker.getLatLng()),
+          popup.setContent(
+            formatContent(marker.getLatLng().lat, marker.getLatLng().lng)
+          );
+        marker.openPopup();
+      });
+
+      // function addHospitalMarkers() {
+      //   fetch("/data")
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       data.forEach((hospital) => {
+      //         L.marker([hospital.Latitude, hospital.Longitude])
+      //           .addTo(mymap)
+      //           .bindPopup(`Nama Rumah Sakit : ${hospital.Nama}`);
+      //         console.log(marker);
+      //       });
+      //     })
+      //     .catch((error) => console.error("Error:", error));
+      // }
+
+      var hospitalMarkers = [];
+
+      function addHospitalMarkers() {
+        if (hospitalMarkers.length === 0) {
+          fetch("/data")
+            .then((response) => response.json())
+            .then((data) => {
+              data.forEach((hospital) => {
+                var newMarker = L.marker([
+                  hospital.Latitude,
+                  hospital.Longitude,
+                ])
+                  .addTo(mymap)
+                  .bindPopup(`Nama Rumah Sakit : ${hospital.Nama}`);
+                hospitalMarkers.push(newMarker);
+              });
+            })
+            .catch((error) => console.error("Error:", error));
+        } else {
+          hospitalMarkers.forEach((marker) => mymap.removeLayer(marker));
+          hospitalMarkers = []; // Kosongkan array marker rumah sakit
+        }
+      }
+
+      function displayMarkerData() {
+        fetch("/data")
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.querySelector("#marker-table tbody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            data.forEach((marker) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                            <td>${marker.Nama}</td>
+                            <td>${marker.Latitude}</td>
+                            <td>${marker.Longitude}</td>
+                            <td>
+                                <button onclick="updateMarker('${marker.Nama}')">Update</button>
+                                <button onclick="deleteMarker('${marker.Nama}')">Delete</button>
+                            </td>
+                        `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function updateMarker(Nama) {
+        window.location.href = `/updatepage/${Nama}`;
+      }
+
+      function deleteMarker(nama) {
+        fetch(`/delete/${nama}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to delete marker");
+            }
+            // Refresh data markers after deletion
+            displayMarkerData();
+          })
+          .catch((error) => {
+            console.error("Error deleting marker:", error);
+          });
+      }
+      displayMarkerData();
+    </script>
+  </body>
+</html>

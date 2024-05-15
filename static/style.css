@@ -29,14 +29,16 @@ body {
 
 .nav-item {
   display: flex;
-  justify-content: space-evenly;
-
+  justify-content: right;
   align-items: center;
+  width: 40%;
+  gap: 15px;
 }
 
 .item {
   display: flex;
   text-align: center;
+  gap: 20px;
 }
 
 .item button {
@@ -91,6 +93,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 10px;
+  gap: 20px;
 }
 
 .showrs {
@@ -187,4 +190,8 @@ body {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+}
+
+td {
+  text-align: center;
 }

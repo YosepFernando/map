@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Sign up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .backg-log {
+        background-image: url(../static/Background.jpg);
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        animation: zoomback 5s ease-out forwards;
+        filter: blur(2px) brightness(0.6);
+      }
+      @keyframes zoomback {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.15);
+        }
+      }
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background: rgb(255, 255, 255);
+        height: 50vh;
+        width: 500px;
+        opacity: 0.6;
+        box-shadow: 0px 0px 10px white;
+        border-radius: 15px;
+        animation: fadeinup 0.5s;
+        overflow: hidden;
+      }
+      @keyframes fadeinup {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px) scale(0.9);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+      }
+      .login-img {
+        background-image: url(../static/login-bg.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%;
+        width: 100%;
+      }
+      .login-data {
+        border-left: 1px solid;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+      }
+      .inputs {
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+      }
+      .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        text-align: right;
+        margin-bottom: 15px;
+        margin-top: 0.5rem;
+      }
+      .form-group label {
+        width: 100px;
+        margin-right: 8px;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="password"] {
+        border: 1px solid gray;
+        outline: none;
+        box-shadow: 0px 0px 30px black;
+        padding: 10px;
+        border-radius: 25px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+      .buttt {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        height: 3rem;
+        width: 40%;
+        opacity: 1;
+        color: rgb(174, 166, 166);
+        border-radius: 25px;
+        background-color: #fcf5e5;
+        text-decoration: none;
+        border: 2px solid #0ef;
+        transition: colors 1s, box-shadow 1s;
+        z-index: 1;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .buttt:hover {
+        transition-delay: 0s;
+        color: #292525;
+        box-shadow: 0 0 20px cyan;
+      }
+      .login-signup {
+        font-weight: 500;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: right;
+        text-align: center;
+        gap: 20px;
+        margin: 20px;
+      }
+      .signup-group {
+        display: none;
+      }
+      .login-group {
+        display: block;
+      }
+      .switch-link {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+      }
+      .message {
+        color: red;
+        text-align: center;
+        font-weight: 500;
+        height: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="backg-log"></div>
+    <div class="box">
+      <div class="content">
+        <div
+          class="login-img"
+          onclick="window.location.href='/'"
+          style="cursor: pointer"
+        ></div>
+        <div class="login-data">
+          <div class="inputs">
+            <form id="login-form" class="login-group">
+              <div class="form-group">
+                <label for="username">Username :</label>
+                <input type="text" id="username" name="username" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Password :</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+            </form>
+            <form id="signup-form" class="signup-group">
+              <div class="form-group">
+                <label for="signup-username">Username :</label>
+                <input
+                  type="text"
+                  id="signup-username"
+                  name="signup-username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="signup-password">Password :</label>
+                <input
+                  type="password"
+                  id="signup-password"
+                  name="signup-password"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="repeat-password">Repeat :</label>
+                <input
+                  type="password"
+                  id="repeat-password"
+                  name="repeat-password"
+                  required
+                />
+              </div>
+            </form>
+            <div class="message" id="message"></div>
+          </div>
+          <div class="login-signup">
+            <span class="switch-link" id="switch-link">Sign up!</span>
+            <button class="buttt" id="login-button" type="submit">
+              Log in
+            </button>
+            <button
+              class="buttt"
+              id="signup-button"
+              type="submit"
+              style="display: none"
+            >
+              Sign up
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const switchLink = document.getElementById("switch-link");
+        const loginButton = document.getElementById("login-button");
+        const signupButton = document.getElementById("signup-button");
+        const messageDiv = document.getElementById("message");
+
+        // Set initial form visibility
+        loginForm.style.display = "block";
+        signupForm.style.display = "none";
+
+        switchLink.addEventListener("click", () => {
+          if (loginForm.style.display === "none") {
+            loginForm.style.display = "block";
+            signupForm.style.display = "none";
+            switchLink.textContent = "Sign up!";
+            loginButton.style.display = "block";
+            signupButton.style.display = "none";
+            messageDiv.textContent = "";
+          } else {
+            loginForm.style.display = "none";
+            signupForm.style.display = "block";
+            switchLink.textContent = "Log in!";
+            loginButton.style.display = "none";
+            signupButton.style.display = "block";
+            messageDiv.textContent = "";
+          }
+        });
+
+        loginButton.addEventListener("click", async (e) => {
+          e.preventDefault();
+          messageDiv.textContent = "";
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          if (!username || !password) {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Username and password are required.";
+            return;
+          }
+          const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          if (response.ok) {
+            messageDiv.style.color = "green";
+            messageDiv.textContent = "Login successful!";
+            window.location.href = "/home";
+          } else {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Login failed. Please try again.";
+          }
+        });
+
+        signupButton.addEventListener("click", async (e) => {
+          e.preventDefault();
+          messageDiv.textContent = "";
+          const username = document.getElementById("signup-username").value;
+          const password = document.getElementById("signup-password").value;
+          const repeatPassword =
+            document.getElementById("repeat-password").value;
+
+          if (password !== repeatPassword) {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Passwords do not match.";
+            return;
+          }
+
+          const response = await fetch("/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          if (response.ok) {
+            messageDiv.style.color = "green";
+            messageDiv.textContent = "Sign-up successful!";
+          } else {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = "Sign-up failed. Please try again.";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
